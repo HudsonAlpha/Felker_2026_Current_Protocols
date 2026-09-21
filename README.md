@@ -6,7 +6,10 @@ In this tutorial, we provide a reproducible workflow for the All of Us Researche
 
 ## Protocols
 **Basic Protocol 1**: Isolating Putatively Deleterious Variation in a gene or region of interest using the All of Us Variant Annotation Table and VariantDataset
+
 **Alternate Protocol 1**: Alternate filtering criteria applicable to the Variant Annotation Table
+
 **Support Protocol 1**: Setting up an environment for Python in JupyterLab Notebooks
+
 **Support Protocol 2**: Setting up an environment for R in RStudio
 
