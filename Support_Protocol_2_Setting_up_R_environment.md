@@ -40,5 +40,3 @@ for(variable in var) {
   print(paste0(variable, " : ", mget(variable)))
 }
 ```
-
-<img width="468" height="434" alt="image" src="https://github.com/user-attachments/assets/05de5000-0ea6-419f-8b76-fe6a8f2f8696" />
