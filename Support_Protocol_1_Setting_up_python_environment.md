@@ -48,11 +48,8 @@ for r in resources:
             if re.match(r"^C\d{4}Q\d+R\d+$", dataset_id):
                 os.environ["WORKSPACE_CDR"] = f"{r['projectId']}.{dataset_id}"
                 print(f"Successfully set WORKSPACE_CDR to: {os.environ['WORKSPACE_CDR']}")
-
-bucket = %env WORKSPACE_BUCKET
-google_project_id = %env GOOGLE_CLOUD_PROJECT
 ```
-### 5. Print variables defined
+## 5. Print variables defined
 ```                
 print("\nVariables extracted:")
 for var in ["GOOGLE_CLOUD_PROJECT", "WORKSPACE_BUCKET", 
@@ -60,21 +57,21 @@ for var in ["GOOGLE_CLOUD_PROJECT", "WORKSPACE_BUCKET",
     value = os.environ.get(var)
     print(f"{var}: {value if value else 'NOT FOUND'}")
 ```
-### 6. Set and print bucket and google_project_id variables
+## 6. Set and print bucket and google_project_id variables
 ```
 bucket = %env WORKSPACE_BUCKET
 google_project_id = %env GOOGLE_CLOUD_PROJECT
 !echo $bucket
 !echo $google_project_id
 ```
-### 7. Import and initialize Hail
+## 7. Import and initialize Hail
 ```
 import hail as hl
 hl.init(gcs_requester_pays_configuration=google_project_id)
 hl.default_reference(new_default_reference = "GRCh38")
 ```
 
-### 8. Set paths for the VAT and the VDS
+## 8. Set paths for the VAT and the VDS
 
 ```
 auxiliary_path = 'gs://vwb-aou-datasets-controlled/v9/wgs/short_read/snpindel/'
