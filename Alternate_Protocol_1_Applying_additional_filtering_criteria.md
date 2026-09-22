@@ -1,4 +1,4 @@
-# Alternate Protocol 1 - Applying additional filtering criteria using the Variant Annotation Table and external annotations)
+# Alternate Protocol 1 - Applying additional filtering criteria using the Variant Annotation Table and external annotations
 Alternate_Protocol_Steps_1_2_Applying_additional_filtering_criteria.ipynb
 The VAT contains a catalog of parameters to filter variants, including allele counts and frequencies, predicted biological consequence, and variant scores such as SpliceAI and REVEL, (list of annotations available:  https://support.researchallofus.org/hc/en-us/articles/4615256690836-Variant-Annotation-Table). Step 1 and 2 be selection criteria used in in Basic Protocol 1. 
 
@@ -44,3 +44,25 @@ vat_table = vat_table.annotate(locus = hl.locus(vat_table.contig, vat_table.posi
 vat_table = vat_table.filter(hl.literal(intervals).any(lambda i: i.contains(vat_table.locus)))
 ```
 
+## 3. External Annotations
+(_completed in R_)
+If a specific desired annotation is absent from the VAT, add external annotations. Below, we added CADD score accessible from https://cadd.bihealth.org/download. 
+(This file is over 81G, so allocate your local compute resources accordingly, and ensure you download the tabix file as well. WE conducted the following on a high-performance cluster. CADD is publicly available resource for non-commercial research, but if you are using CADD for commercial purposes, you must obtain a license. Contact the developers here: https://cadd.bihealth.org/contact)
+
+Extract CADD scores for the region of interest. In this example, we used the CFTR genomic coordinates, and extracted in a bash using tabix. 
+
+```
+tabix cadd_1.7/whole_genome_SNVs.tsv.gz 7:117480025-117668665 > CFTR_SNV_CADD.txt
+```
+
+Upload this file into your workspace bucket. In Figure 2A, we provide a screen shot of the process in RStudio, using Application Instance 2. 
+(Note the warning dialog box in Figure 2B and ensure you are always abiding by All of Us Data Use Policies.)  
+
+Harmonize this data with output from Step 26 in Basic Protocol 1. 
+
+```
+x <- read.csv("CFTR_SNV_CADD.txt", sep = "\t", header = FALSE)
+x$ID <- paste0("chr", x$V1, "-", x$V2, "-", x$V3, "-", x$V4)
+CFTR_out <- unique(x[,c("ID", "V6")])
+samples_pass_CADD <- left_join(samples_pass, CFTR_out, by = "ID")
+```
