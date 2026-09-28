@@ -7,7 +7,7 @@ Use the configuration described in “Materials,” Application Instance 1
       Master Node in “n2-standard-2” configuration, 1000 GB boot disk 
       8 Primary Worker nodes with n2-standard-8 configuration,  500 GB boot disk
       Hail (Spark 3.5.3, hail 0.2.135) Installed
-      $4.07/hr
+      $4.12/hr
 
 ## 2. Set up your Python environment by defining environmental variables. See Support Protocol 1 and Support_Protocol_1_Setting_up_python_environment.ipynb
 ```
