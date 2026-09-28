@@ -248,7 +248,7 @@ dev.off()
 
 ## 25. Simplify the table and add All of Us variant count.
 ```
-working_chr <- unique(variant_out_strict[,c("ID", "s", "LGT", "AB", "total")])
+working_chr <- unique(variant_out_strict[,c("ID", "s", "GT", "AB", "total")])
 variant_table <- data.frame(table(working_chr$ID))
 variant_table$Var1 <- as.character(variant_table$Var1)
 working_chr2 <- full_join(working_chr, variant_table, by = c("ID"="Var1"))
