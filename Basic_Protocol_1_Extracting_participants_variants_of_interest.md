@@ -10,9 +10,9 @@ Use the configuration described in “Materials,” Application Instance 1
       $4.07/hr
 
 ## 2. Set up your Python environment by defining environmental variables. See Support Protocol 1 and Support_Protocol_1_Setting_up_python_environment.ipynb
-
+```
 %run Support_Protocol_1_Setting_up_python_environment.ipynb
-
+```
 ## 3. Import the variant annotation table, select genes for analysis and export all variants as a table
 At this point _all_ variants are exported to allow for subsequent alternative filtering, and to ease future computational workload. This step takes over 30 minutes to complete, so we recommend exporting an intermediate file with all variants in the gene of interest at this point to save time in pipeline development and/or reanalysis. These commands as executed export 376,663 VAT annotation records in CFTR.
 (To select multiple genes, use a comma-separated list here, i.e. [‘CFTR’, ’NF1’]).
