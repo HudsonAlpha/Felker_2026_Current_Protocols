@@ -209,7 +209,7 @@ summary(variant_out$total)
 This is done as a conservative measure to ensure high-quality alternate allele calls. 
 
 ```
-variant_out_strict <- variant_out[which(variant_out$AB >= 0.30 & variant_out$total >= 15 & variant_out$FT == “true”),]
+variant_out_strict <- variant_out[which(variant_out$AB >= 0.30 & variant_out$total >= 15 & variant_out$FT == "true"),]
 new_rows <- dim(variant_out_strict)[1]
 print(paste0(new_rows, " of the original ", number_total, " rows remain after filtering"))
 print("New summary statistics for allele balance")
@@ -241,7 +241,7 @@ depth_plot <- ggplot(variant_out, aes(x = total)) + xlim(0,100) +
             axis.ticks.y=element_blank(),
             axis.text.x=element_text(size=16),
             axis.title.x=element_text(size=20)) + geom_vline(xintercept=15) + xlab("Depth")  
-pdf(“total_read_depth_plot.pdf”)
+pdf("total_read_depth_plot.pdf")
 depth_plot 
 dev.off()
 ```
@@ -285,8 +285,8 @@ write.table(deltaF508_homozygotes, "deltaF508_homozygotes.tsv", sep = "\t", quot
 Additionally, extract other individuals with homozygous alternate variants:
 
 ```
->>> other_homozygotes <-  samples_pass[samples_pass$ID != "chr7-117559590-ATCT-A" & grepl("^1[/|]1$", samples_pass$GT), ]
->>> write.table(other_homozygotes, "other_CFTR_homozygotes.tsv", sep = "\t", quote= FALSE, col.names = TRUE, row.names = FALSE)
+other_homozygotes <-  samples_pass[samples_pass$ID != "chr7-117559590-ATCT-A" & grepl("^1[/|]1$", samples_pass$GT), ]
+write.table(other_homozygotes, "other_CFTR_homozygotes.tsv", sep = "\t", quote= FALSE, col.names = TRUE, row.names = FALSE)
 ```
 As well as possible compound heterozygotes: 
 (_phased data is required for determining compound heterozygous state (i.e.., 0|1, 1|0). The below command does not take phasing into consideration_)
