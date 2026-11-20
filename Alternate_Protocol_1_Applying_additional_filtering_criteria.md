@@ -27,6 +27,7 @@ CFTR_ac_100.count()
 Filtering on variants with REVEL scores (a pathogenicity predictor for missense variants (Ioannidis, 2016)) of greater than 0.10. 
 
 ```
+CFTR_vat_table = CFTR_vat_table.annotate(revel = hl.parse_float(CFTR_vat_table.revel))
 CFTR_revel_010 = CFTR_vat_table.filter(CFTR_vat_table.revel >= 0.10)
 ```
 
